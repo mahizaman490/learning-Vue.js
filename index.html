@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .active{
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <h2>enter your name</h2>
+        <input type="text" v-model="name">
+        <br>
+        <h2>your name is {{name}}</h2> -->
+
+<ul>
+
+<li>
+    <a :class="className" :href="link1.url" :title="link1.title">{{link1.text}}</a>
+
+</li>
+<li>
+    
+    <a :href="link2.url" :title="link2.title">{{link2.text}}</a>
+
+</li>
+
+
+</ul>
+    </div>
+   <script src="index.js"></script>  
+    <script>
+        // const app = new Vue({
+        //     el:"#app",
+        //     data:{
+        //         name: "Mahi"
+        //     }
+        // })
+        const app = new Vue({
+            el:"#app",
+            data:{
+                link1:{
+                    text:"facebook", title:"Go to facebook", url:"https//facebook.com"
+                },
+                link2:{
+                    text:"youtube", title:"Go to Youtube", url:"https//youtube.com"
+                },
+                className:"active"
+            }
+        })
+    </script>
+</body>
+</html>
