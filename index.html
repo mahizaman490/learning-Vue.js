@@ -12,12 +12,12 @@
   <ul>
     <li v-for="(skill,i) in skills">
         <p>
-            {{skill}}
+            {{skill}} <button v-on:click="removeSkill(i)">x</button>
         </p>
     </li>
   </ul>
   <input type="text" v-model="newSkill">
-  <button v-on:click="addNewSkill()">add</button>
+  <button @click="addNewSkill()">add</button>
     </div>
    <script src="index.js"></script>  
     <script>
@@ -38,7 +38,10 @@
                 this.skills.push(this.newSkill); // newskill will be added in skills 
                 this.newSkill = " ";
             }
-          }
+          },
+            removeSkill : function(i){
+                this.skills.splice(i,1); //skill will be remove
+            }
         })
     </script>
 </body>
