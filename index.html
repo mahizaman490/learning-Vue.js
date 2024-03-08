@@ -9,13 +9,27 @@
 </head>
 <body>
     <div id="app">
+<h2>All Payments</h2>
   <ul>
-    <li v-for="(skill,i) in skills">
+    <li v-for="payment in payments">
         <p>
-            {{skill}} <button v-on:click="removeSkill(i)">x</button>
+            {{payment.name}} ({{payment.amount}})
+            
         </p>
     </li>
   </ul>
+
+  <h2>Unpaid Payments</h2>
+  <ul>
+    <li v-for="payment in  unpaidPayments">
+        <p>
+            {{payment.name}} ({{payment.amount}})
+            
+        </p>
+    </li>
+  </ul>
+
+  <p>total Amount {{totalAmount}}</p>
   <input type="text" v-model="newSkill">
   <button @click="addNewSkill()">add</button>
     </div>
@@ -30,18 +44,29 @@
         const app = new Vue({
             el:"#app",
           data:{
-            newSkill:"",
-            skills:["HTML", "CSS", "JS"]
+            payments:[
+                {name:houseRent, amount:15000,paid:true},
+                {name:water, amount:1000,paid:false},
+                {name:net, amount:500,paid:true},
+                {name:gesh, amount:300,paid:false},
+                {name:electricity, amount:15000,paid:true} , 
+                
+            ]
           },
-          methods:{
-            addNewSkill : function(){
-                this.skills.push(this.newSkill); // newskill will be added in skills 
-                this.newSkill = " ";
+          computed:{
+            unpaidPayments: function(p){ //p = payment 
+                return this.payments.filter(function(){
+                    return !p.paid; //whitch is unpaid 
+                });
+            },
+            totalAmount: function(){
+                let sum = 0;
+                for(let i = 0; i< this.payments.length; i++){
+                    sum = sum + this.payments[i].amount
+                }
+                return sum;
             }
-          },
-            removeSkill : function(i){
-                this.skills.splice(i,1); //skill will be remove
-            }
+          }
         })
     </script>
 </body>
